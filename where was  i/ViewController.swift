@@ -22,6 +22,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
+    
+    @IBAction func SaveButtonClicked(_ sender: Any) {
+        let coord = locationManager.location?.coordinate
+        
+        if let lat  = coord?.latitude{
+            print("Latitude:" + String(lat))
+        }
+        if let long = coord?.longitude{
+            print("Longitude:" + String(long))
+        }
+    }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         guard status == .authorizedWhenInUse else{
             print("Location not enabled")
