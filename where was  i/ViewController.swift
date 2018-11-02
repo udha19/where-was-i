@@ -27,11 +27,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let coord = locationManager.location?.coordinate
         
         if let lat  = coord?.latitude{
-            print("Latitude:" + String(lat))
+            if let long = coord?.longitude{
+                DataStore().StoreDataPoint(latitude: String(lat), longitude: String(long))
+            }
         }
-        if let long = coord?.longitude{
-            print("Longitude:" + String(long))
-        }
+       
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         guard status == .authorizedWhenInUse else{
